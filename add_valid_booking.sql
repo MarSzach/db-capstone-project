@@ -1,9 +1,9 @@
-CREATE DEFINER=`db_capstone_user`@`%` PROCEDURE `AddValidBooking`(IN asked_time DATETIME, IN table_id INT)
+CREATE DEFINER=`db_capstone_user`@`%` PROCEDURE `AddValidBooking`(IN table_id INT, IN booking_received_at DATETIME, IN asked_time DATETIME, IN customer_id INT, IN employee_id INT)
 BEGIN
 DECLARE check_if_booked INT;
 START TRANSACTION;
-INSERT INTO Bookings (TableNumber, BookingDate, CustomerID, EmployeeID)
-VALUES (table_id, asked_time, 28, 7);
+INSERT INTO Bookings (TableNumber, BookingReceivedAt, BookingDate, CustomerID, EmployeeID)
+VALUES (table_id, booking_received_at, asked_time, customer_id, employee_id);
 SELECT COUNT(*) INTO check_if_booked 
 FROM Bookings 
 WHERE TableNumber = table_id
